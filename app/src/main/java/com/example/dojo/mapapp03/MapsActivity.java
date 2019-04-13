@@ -1,5 +1,8 @@
 package com.example.dojo.mapapp03;
 
+import android.graphics.Color;
+import android.icu.lang.UCharacter;
+import android.icu.text.RelativeDateTimeFormatter;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -9,6 +12,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -53,5 +57,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //カメラの位置とズームを設定
         LatLng center=new LatLng(31.849963, -167.768752);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 2));
+
+        //線を描く
+        PolylineOptions line=new PolylineOptions();
+        line.add(japan);
+        line.add(canada);
+        //色、太さ、測地線
+        line.color(Color.BLUE);
+        line.width(20);
+        line.geodesic(true);
+        mMap.addPolyline(line);
+
     }
 }
