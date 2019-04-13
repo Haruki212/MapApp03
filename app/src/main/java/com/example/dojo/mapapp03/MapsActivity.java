@@ -12,6 +12,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -58,15 +60,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng center=new LatLng(31.849963, -167.768752);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 2));
 
-        //線を描く
-        PolylineOptions line=new PolylineOptions();
-        line.add(japan);
-        line.add(canada);
-        //色、太さ、測地線
-        line.color(Color.BLUE);
-        line.width(20);
-        line.geodesic(true);
-        mMap.addPolyline(line);
+//        //線を描く
+//        PolylineOptions line=new PolylineOptions();
+//        line.add(japan);
+//        line.add(canada);
+//        //色、太さ、測地線
+//        line.color(Color.BLUE);
+//        line.width(20);
+//        line.geodesic(true);
+//        mMap.addPolyline(line);
+
+        //３地点を結ぶ半透明の三角形を描く
+        PolygonOptions options=new PolygonOptions();
+        options.add(japan,sydney,canada);
+        options.strokeColor(Color.BLUE);
+        options.strokeWidth(5);
+        options.fillColor(Color.argb(100,0,220,100));
+        options.geodesic(true);
+        mMap.addPolygon(options);
+
 
     }
 }
