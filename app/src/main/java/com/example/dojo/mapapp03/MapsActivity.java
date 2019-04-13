@@ -50,7 +50,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng canada=new LatLng(53.546170, -113.494681);
         mMap.addMarker(new MarkerOptions().position(canada).title("Marker in canada"));
 
-        //シドニーにカメラを移動
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //カメラの位置とズームを設定
+        LatLng center=new LatLng(31.849963, -167.768752);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(center, 2));
     }
 }
