@@ -10,6 +10,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
@@ -70,14 +72,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        line.geodesic(true);
 //        mMap.addPolyline(line);
 
-        //３地点を結ぶ半透明の三角形を描く
-        PolygonOptions options=new PolygonOptions();
-        options.add(japan,sydney,canada);
-        options.strokeColor(Color.BLUE);
-        options.strokeWidth(5);
-        options.fillColor(Color.argb(100,0,220,100));
-        options.geodesic(true);
-        mMap.addPolygon(options);
+//        //３地点を結ぶ半透明の三角形を描く
+//        PolygonOptions options=new PolygonOptions();
+//        options.add(japan,sydney,canada);
+//        options.strokeColor(Color.BLUE);
+//        options.strokeWidth(5);
+//        options.fillColor(Color.argb(100,0,220,100));
+//        options.geodesic(true);
+//        mMap.addPolygon(options);
+
+        //3地点を中心とする半透明の円を描く（３つの円が重なるように大きさを調整）
+        CircleOptions circle=new CircleOptions();
+        circle.center(japan);
+        circle.center(sydney);
+        circle.center(canada);
+        circle.strokeColor(Color.BLUE);
+        circle.strokeWidth(5);
+        circle.fillColor(Color.argb(100,0,220,100));
+        circle.radius(500000);
+
+
+        mMap.addCircle(circle);
 
 
     }
